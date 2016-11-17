@@ -16,21 +16,5 @@ namespace COMP229_F2016_Lesson10.Models
         public virtual DbSet<Artist> Artists { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Album>()
-                .Property(e => e.Price)
-                .HasPrecision(10, 2);
-
-            modelBuilder.Entity<Artist>()
-                .HasMany(e => e.Albums)
-                .WithRequired(e => e.Artist)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Genre>()
-                .HasMany(e => e.Albums)
-                .WithRequired(e => e.Genre)
-                .WillCascadeOnDelete(false);
-        }
     }
 }

@@ -9,6 +9,12 @@ namespace COMP229_F2016_Lesson10.Models
     [Table("Album")]
     public partial class Album
     {
+
+        public Album()
+        {
+
+        }
+
         /// <summary>
         /// This constructor takes one argument title which sets the Title property to its value
         /// </summary>
@@ -19,24 +25,31 @@ namespace COMP229_F2016_Lesson10.Models
         }
 
 
-        public int AlbumId { get; set; }
+        public virtual int AlbumId { get; set; }
 
-        public int GenreId { get; set; }
+        // Genre foreign key
+        public virtual int GenreId { get; set; }
+        public virtual Genre Genre { get; set; }
 
-        public int ArtistId { get; set; }
+        // Artist foreign key
+        public virtual int ArtistId { get; set; }
+        public virtual Artist Artist { get; set; }
 
         [Required]
         [StringLength(160)]
-        public string Title { get; set; }
+        [Display(Name = "Album Title")]
+        public virtual string Title { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal Price { get; set; }
+        public virtual decimal Price { get; set; }
 
         [StringLength(1024)]
-        public string AlbumArtUrl { get; set; }
+        [Display(Name = "Album Art URL")]
+        [ScaffoldColumn(false)]
+        public virtual string AlbumArtUrl { get; set; }
 
-        public virtual Artist Artist { get; set; }
+        
 
-        public virtual Genre Genre { get; set; }
+        
     }
 }

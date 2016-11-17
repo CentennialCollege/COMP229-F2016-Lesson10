@@ -37,7 +37,7 @@ namespace COMP229_F2016_Lesson10.Controllers
                 genre = "Disco";
             }
 
-            Genre genreModel = new Genre(genre);
+            Genre genreModel = db.Genres.Include("Albums").Single(g => g.Name == genre);
 
             return View(genreModel);
         }
@@ -45,7 +45,7 @@ namespace COMP229_F2016_Lesson10.Controllers
         // GET: Store/Details/5
         public ActionResult Details(int? id = 1)
         {
-            Album album = new Album("Album " + id);
+            Album album = db.Albums.Find(id);
 
             return View(album);
         }
